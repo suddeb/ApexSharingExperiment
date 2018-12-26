@@ -2,9 +2,9 @@
 .*
 
 # But don't ignore certain config files
-!/.gitignore
-!/.gitlab-ci.yml
-!/.ezbake
+.gitlab-ci.yml
+.ezbake
+.vscode
 
 # local config files
 .env
