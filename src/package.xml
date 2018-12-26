@@ -3,6 +3,9 @@
     <types>
         <members>CarShare</members>
         <members>CarShareTest</members>
+        <members>MyWithSharingClass</members>
+        <members>MyWithoutSharingClass</members>
+        <members>WithWithourSharingClassTest</members>
         <name>ApexClass</name>
     </types>
     <version>36.0</version>
