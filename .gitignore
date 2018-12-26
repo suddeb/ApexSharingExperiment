@@ -5,6 +5,7 @@
 .gitlab-ci.yml
 .ezbake
 .vscode
+.debug
 
 # local config files
 .env
