@@ -6,14 +6,22 @@ public without sharing class MyWithoutSharingClass {
 
 	public List<Car__c> fetchCars2(){
 		List<Car__c> allCars = new List<Car__c>();
-		allCars = [SELECT ID From Car__c];
+		if(	Schema.sObjectType.Car__c.isAccessible() &&
+				Schema.sObjectType.Car__c.Fields.Id.isAccessible()
+			){
+				allCars = [SELECT ID From Car__c];
+		}
 		return allCars;
 	}
 
 	public with sharing class MyInnerClassWithSharing{
 		public List<Car__c> fetchCars3(){
 			List<Car__c> allCars = new List<Car__c>();
-			allCars = [SELECT ID From Car__c];
+			if(	Schema.sObjectType.Car__c.isAccessible() &&
+				Schema.sObjectType.Car__c.Fields.Id.isAccessible()
+			){
+				allCars = [SELECT ID From Car__c];
+		}
 			return allCars;
 		}
 	}
@@ -21,8 +29,11 @@ public without sharing class MyWithoutSharingClass {
 	public without sharing class MyInnerClassWithoutSharing{
 		public List<Car__c> fetchCars4(){
 			List<Car__c> allCars = new List<Car__c>();
-			allCars = [SELECT ID From Car__c];
-			return allCars;
+			if(	Schema.sObjectType.Car__c.isAccessible() &&
+				Schema.sObjectType.Car__c.Fields.Id.isAccessible()
+			){
+				allCars = [SELECT ID From Car__c];
+		}return allCars;
 		}
 	}
 }
