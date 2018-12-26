@@ -1,0 +1,32 @@
+image: 'appirio/dx-salesforce:latest'
+stages:
+  - deploy
+  - validate
+  - merge_request
+validate_against_PROD:
+  stage: validate
+  script:
+    - . ./config.sh
+    - 'adx sort:check'
+    - 'adx deploy:package --deploy.testLevel NoTestRun --target PROD'
+  cache: &ref_0
+    key: $CI_COMMIT_REF_SLUG
+    paths:
+      - node
+  except: &ref_1
+    - schedules
+  only:
+    - /^feature/.*/
+deploy_to_PROD:
+  stage: deploy
+  script:
+    - . ./config.sh
+    - 'adx sort:check'
+    - >-
+      adx deploy:package --deploy.testLevel RunLocalTests --deploy.checkOnly
+      false --target PROD
+  cache: *ref_0
+  except: *ref_1
+  only:
+    - '/^v[0-9.]+$/'
+  when: manual
